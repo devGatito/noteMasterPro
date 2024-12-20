@@ -1,8 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import SplashScreen from "@/components/SplashScreen";
-import Dashboard from "@/dashboard/page";
-import NavBar from "@/components/NavBar";
+import Layout from "@/components/Sidebar";
 export default function Home() {
   const [showContent, setShowContent] = useState(false);
 
@@ -15,11 +14,8 @@ export default function Home() {
     <>
       {!showContent && <SplashScreen />}
       {showContent && (
-
         <>
-        <NavBar/>
-        <Dashboard/>
-        
+          <Layout />
         </>
       )}
     </>

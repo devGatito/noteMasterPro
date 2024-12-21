@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import SplashScreen from "@/components/SplashScreen";
-import Layout from "@/components/Sidebar";
+import Layout from "@/components/Layout";
 export default function Home() {
   const [showContent, setShowContent] = useState(false);
 

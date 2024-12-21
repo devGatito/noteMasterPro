@@ -1,32 +1,11 @@
-import { useState } from "react";
 import { FaHome, FaBook, FaHeart, FaUsers, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { FaSearch, FaBell } from "react-icons/fa";
-import Image from "next/image";
 
-// Navbar componente
-const Navbar = () => {
-  return (
-    <nav className="bg-white p-4 flex justify-between items-center shadow-md">
-      <div className="flex items-center space-x-3">
-        <Image src={"/note.svg"} width={24} height={24} alt="Icon" />
-        <span className="text-black text-lg font-bold">NotePro</span>
-      </div>
+interface SliderBarProps {
+  isOpen: boolean;
+  toggleSidebar: () => void;
+}
 
-      <div className="flex items-center space-x-4">
-        <FaSearch size={20} className="text-[#4B5563]" />
-        <FaBell size={24} className="text-[#4B5563] cursor-pointer" />
-        <Image src={"/user.png"} width={24} height={24} alt="user" />
-      </div>
-    </nav>
-  );
-};
-
-// SliderBar componente
-const SliderBar = () => {
-  const [isOpen, setIsOpen] = useState(true);
-
-  const toggleSidebar = () => setIsOpen(!isOpen);
-
+const SliderBar: React.FC<SliderBarProps> = ({ isOpen, toggleSidebar }) => {
   return (
     <div className="flex h-screen overflow-hidden">
       <aside
@@ -36,7 +15,7 @@ const SliderBar = () => {
       >
         <button
           onClick={toggleSidebar}
-          className="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-[#374151] text-white rounded-full p-2 shadow-md hover:bg-[#4B5563] focus:outline-none hidden md:block"
+          className="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-[#374151] text-white rounded-full p-2 shadow-md hover:bg-[#4B5563] focus:outline-none"
         >
           {isOpen ? <FaChevronLeft size={20} /> : <FaChevronRight size={20} />}
         </button>
@@ -87,7 +66,7 @@ const SliderBar = () => {
           >
             <FaUsers size={20} />
             <span
-              className={`whitespace-nowrap overflow-hidden  transition-all duration-200 ${
+              className={`whitespace-nowrap overflow-hidden transition-all duration-200 ${
                 isOpen ? "opacity-100" : "opacity-0 hidden"
               }`}
             >
@@ -105,14 +84,4 @@ const SliderBar = () => {
   );
 };
 
-// Layout componente para juntar Navbar y SliderBar
-const Layout = () => {
-  return (
-    <div className="h-screen flex flex-col">
-      <Navbar />
-      <SliderBar />
-    </div>
-  );
-};
-
-export default Layout;
+export default SliderBar;
